@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
-"""Floor the return type"""
-import math
+"""  Basic annotations -  floor   """
 
 
-def floor(n: float) -> float:
-    """Math.floor"""
-    return math.floor(n)
+def floor(n: float) -> int:
+    """ function floor """
+    return int(n)
