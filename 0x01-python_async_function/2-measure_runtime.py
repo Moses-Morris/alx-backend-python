@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
-import asyncio
-from typing import List
-from heapq import nsmallest
-task_wait_random = __import__('3-tasks').task_wait_random
-"""uses task_wait_random"""
+import time
+from asyncio import run
+wait_n = __import__('1-concurrent_coroutines').wait_n
+"""measure runtime"""
 
 
-async def task_wait_n(n: int, max_delay: int) -> List[float]:
-    """uses task_wait_random"""
-    tasks = [task_wait_random(max_delay) for _ in range(n)]
-    results = await asyncio.gather(*tasks)
-    return nsmallest(n, results)
+def measure_time(n: int, max_delay: int) -> float:
+    """measure runtime"""
+    start_time = time.time()
+    run(wait_n(n, max_delay))
+    end_time = time.time()
+    total_time = end_time - start_time
+    return total_time / n
